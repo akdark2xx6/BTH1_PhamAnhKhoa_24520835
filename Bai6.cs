@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Design;
+using System.ComponentModel.Design;
 
 namespace MaTran 
 {
@@ -10,7 +10,7 @@ namespace MaTran
             Random ran=new Random();
             Console.Write("Nhap so hang: ");
             int m = ReadPositiveInt();
-            Console.Write("Nhap so cot: ");
+            Console.Write("\nNhap so cot: ");
             int n = ReadPositiveInt();
             //Tạo matrix
             List<List<int>> Mtx = new List<List<int>>();
@@ -46,35 +46,79 @@ namespace MaTran
                 //Xử lí chức năng người dùng chọn
                 switch (Bien)
                 {
-                    case 1: 
+                    case 1:
                         XuatMaTran(Mtx);
                         break;
-                    case 2: 
-                        Console.WriteLine("\n[Phan tu lon nhat la: " + TimPhanTuLonNhat(Mtx) + "]");
+
+                    case 2:
+                        if (Mtx.Count == 0 || Mtx.All(r => r.Count == 0))
+                        {
+                            Console.WriteLine("\n[Khong co phan tu trong ma tran]");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n[Phan tu lon nhat la: " + TimPhanTuLonNhat(Mtx) + "]");
+                        }
                         break;
+
                     case 3:
-                        Console.WriteLine("\n[Phan tu nho nhat la: " + TimPhanTuNhoNhat(Mtx) + "]");
+                        if (Mtx.Count == 0 || Mtx.All(r => r.Count == 0))
+                        {
+                            Console.WriteLine("\n[Khong co phan tu trong ma tran]");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n[Phan tu nho nhat la: " + TimPhanTuNhoNhat(Mtx) + "]");
+                        }
                         break;
+
                     case 4:
-                        Console.WriteLine("\n[Dong co tong lon nhat la dong thu " + TimDongCoTongLonNhat(Mtx) + "]");
+                        if (Mtx.Count == 0 || Mtx.All(r => r.Count == 0))
+                        {
+                            Console.WriteLine("\n[Khong co phan tu trong ma tran]");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n[Dong co tong lon nhat la dong thu " + TimDongCoTongLonNhat(Mtx) + "]");
+                        }
                         break;
+
                     case 5:
                         Console.WriteLine("\n[Tong cac so khong phai so nguyen to la: " + TongCacSoKoNguyenTo(Mtx) + "]");
                         break;
+
                     case 6:
-                        Console.Write("\nNhap dong muon xoa: ");
-                        XoaDong(Mtx, ReadPositiveInt());
+                        if (Mtx.Count == 0 || Mtx.All(r => r.Count == 0))
+                        {
+                            Console.WriteLine("\n[Khong co phan tu trong ma tran]");
+                        }
+                        else
+                        {
+                            Console.Write("\nNhap dong muon xoa: ");
+                            XoaDong(Mtx, ReadPositiveInt());
+                        }
                         break;
+
                     case 7:
-                        XoaCotCoPhanTuLonNhat(Mtx);
+                        if (Mtx.Count == 0 || Mtx.All(r => r.Count == 0))
+                        {
+                            Console.WriteLine("\n[Khong co phan tu trong ma tran]");
+                        }
+                        else
+                        {
+                            XoaCotCoPhanTuLonNhat(Mtx);
+                        }
                         break;
+
                     case 0:
                         Console.WriteLine("\n[Ket thuc chuong trinh]");
                         break;
+
                     default:
                         Console.WriteLine("\n[Lua chon khong hop le, vui long chon lai]");
                         break;
                 }
+
             }
         }
         static void XuatMaTran(List<List<int>> Mtx)
@@ -162,7 +206,7 @@ namespace MaTran
         static void XoaDong(List<List<int>> Mtx, int ViTri)
         {
             //Hàm xóa dòng
-            if(ViTri <0 || ViTri > Mtx.Count())
+            if(ViTri <= 0 || ViTri > Mtx.Count())
             {
                 Console.WriteLine("\n[Vi tri khong hop le]");
                 return;
